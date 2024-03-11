@@ -18,6 +18,7 @@ import {
   Thead,
   Tr,
 } from "~/components/Table/Table";
+import UploadFile from "~/components/UploadFile/UploadFile";
 
 export const meta: MetaFunction = () => {
   return [
@@ -32,6 +33,15 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const [activeTab, setActiveTab] = useState<number>(0);
 
+  const handleUpload = () => {
+    return new Promise((resolve) => {
+      // Sample Mocking API Upload Time
+      setTimeout(() => {
+        resolve("File Uploaded Successfully!");
+      }, 2000);
+    });
+  };
+
   return (
     <Layout>
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
@@ -42,12 +52,18 @@ export default function Index() {
 
         <TabPanels>
           <TabPanel>
+            <div>
+              <UploadFile handleUpload={handleUpload} />
+            </div>
             <TableContainer>
               <Table>
                 <Thead>
                   <Tr>
-                    <Th>Image</Th>
-                    <Th>Image</Th>
+                    <Th>ID</Th>
+                    <Th>Filename</Th>
+                    <Th>Size</Th>
+                    <Th>Created At</Th>
+                    <Th>Actions</Th>
                   </Tr>
                 </Thead>
                 <Tbody>

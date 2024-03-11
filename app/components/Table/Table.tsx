@@ -16,19 +16,19 @@ export const TableContainer = ({ children }) => {
                           (theadNode, theadIndex) => {
                             if (theadNode?.type?.name === "Tr") {
                               return (
-                                <Th key={`th-${theadIndex}`}>
+                                <Tr key={`tr-${theadIndex}`}>
                                   {getArray(theadNode.props.children).map(
                                     (thNode, thIndex) => {
                                       if (thNode?.type?.name === "Th") {
                                         return (
-                                          <Td key={`td-${thIndex}`}>
+                                          <Th key={`th-${thIndex}`}>
                                             {thNode.props.children}
-                                          </Td>
+                                          </Th>
                                         );
                                       }
                                     }
                                   )}
-                                </Th>
+                                </Tr>
                               );
                             }
                           }
