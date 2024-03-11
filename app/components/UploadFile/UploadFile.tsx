@@ -4,10 +4,12 @@ import Button from "../Button/Button";
 import Spinner from "../Spinner/Spinner";
 
 interface UploadFileProps {
-  handleUpload: (file: File) => Promise<void>;
+  handleUpload: (file: File) => Promise<string>;
 }
 
-const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
+const UploadFile: React.FC<UploadFileProps> = ({
+  handleUpload,
+}: UploadFileProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -69,7 +71,6 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
               <Button onClick={handleUploadLocal}>Upload</Button>
             </div>
           )}
-          {/* loading spinner */}
           {loading && <Spinner />}
         </div>
       )}
