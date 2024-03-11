@@ -39,9 +39,6 @@ const PredictionTableSection = () => {
     dispatch(selectPrediction(predctionId));
   };
 
-  console.log("debug selectedPrediction", selectedPrediction);
-  console.log("debug selectedMedia", selectedMedia);
-
   if (!predictions.length) {
     return <div>No Predictions Found</div>;
   }
