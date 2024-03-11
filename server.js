@@ -4,6 +4,9 @@ import compression from "compression";
 import express from "express";
 import morgan from "morgan";
 
+import generalRoutes from "./backend/general/index.js";
+import predictRoutes from "./backend/predict/index.js";
+
 installGlobals();
 
 const viteDevServer =
@@ -24,6 +27,9 @@ const remixHandler = createRequestHandler({
 const app = express();
 
 app.use(compression());
+
+app.use("/api/predict", predictRoutes);
+app.use("/api", generalRoutes);
 
 // http://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 app.disable("x-powered-by");
