@@ -34,10 +34,11 @@ export default function Index() {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const handleUpload = () => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       // Sample Mocking API Upload Time
       setTimeout(() => {
-        resolve("File Uploaded Successfully!");
+        // resolve("File Uploaded Successfully!");
+        reject("File Upload Failed!");
       }, 2000);
     });
   };
