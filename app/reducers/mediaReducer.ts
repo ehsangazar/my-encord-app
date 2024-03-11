@@ -3,11 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 const mediaSlice = createSlice({
   name: "media",
   initialState: {
-    media: [],
+    items: [
+      {
+        id: "1",
+        filename: "test.jpg",
+        size: 123456,
+        createdAt: new Date().toISOString(),
+      },
+    ],
   },
   reducers: {
     addMedia: (state, action) => {
-      state.media.push(action.payload);
+      state.items.push({
+        id: (state.items.length + 1).toString(),
+        ...action.payload,
+      });
     },
   },
 });

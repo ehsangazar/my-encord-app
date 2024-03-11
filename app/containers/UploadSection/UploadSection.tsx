@@ -10,7 +10,6 @@ const UploadSection = () => {
       setTimeout(() => {
         dispatch(
           addMedia({
-            id: Math.random().toString(36).substr(2, 9),
             filename: file.name,
             size: file.size,
             createdAt: new Date().toISOString(),

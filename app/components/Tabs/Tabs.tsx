@@ -84,5 +84,5 @@ export const TabPanels = ({ children }) => {
 };
 
 export const TabPanel = ({ children }) => {
-  return <div className="p-4">{children}</div>;
+  return <div className="p-0 sm:p-4">{children}</div>;
 };

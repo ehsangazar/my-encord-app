@@ -9,16 +9,9 @@ import {
 } from "~/components/Tabs/Tabs";
 import { AiFillFile, AiFillProject } from "react-icons/ai";
 import { useState } from "react";
-import {
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "~/components/Table/Table";
+
 import UploadSection from "~/containers/UploadSection/UploadSection";
+import ImageTableSection from "~/containers/ImageTableSection/ImageTableSection";
 
 export const meta: MetaFunction = () => {
   return [
@@ -44,27 +37,7 @@ export default function Index() {
         <TabPanels>
           <TabPanel>
             <UploadSection />
-            <TableContainer>
-              <Table>
-                <Thead>
-                  <Tr>
-                    <Th>ID</Th>
-                    <Th>Filename</Th>
-                    <Th>Size</Th>
-                    <Th>Created At</Th>
-                    <Th>Actions</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  <Tr>
-                    <Td>Image 1</Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Image 1</Td>
-                  </Tr>
-                </Tbody>
-              </Table>
-            </TableContainer>
+            <ImageTableSection />
           </TabPanel>
           <TabPanel>
             <p>two!</p>

@@ -2,7 +2,7 @@ import getArray from "~/utils/getArrayOfChildren";
 
 export const TableContainer = ({ children }) => {
   return (
-    <div>
+    <div className="overflow-x-auto w-full bg-white rounded my-6">
       {getArray(children).map((childNode, childIndex) => {
         if (childNode?.type?.name === "Table") {
           return (
@@ -14,9 +14,9 @@ export const TableContainer = ({ children }) => {
                       <Thead key={`thead-${tableIndex}`}>
                         {getArray(tableNode.props.children).map(
                           (theadNode, theadIndex) => {
-                            if (theadNode?.type?.name === "Tr") {
+                            if (theadNode?.type?.name === "TrHead") {
                               return (
-                                <Tr key={`tr-${theadIndex}`}>
+                                <TrHead key={`tr-${theadIndex}`}>
                                   {getArray(theadNode.props.children).map(
                                     (thNode, thIndex) => {
                                       if (thNode?.type?.name === "Th") {
@@ -28,7 +28,7 @@ export const TableContainer = ({ children }) => {
                                       }
                                     }
                                   )}
-                                </Tr>
+                                </TrHead>
                               );
                             }
                           }
@@ -78,25 +78,43 @@ export const TableContainer = ({ children }) => {
 };
 
 export const Table = ({ children }) => {
-  return <table>{children}</table>;
+  return <table className="w-full">{children}</table>;
 };
 
 export const Thead = ({ children }) => {
-  return <thead>{children}</thead>;
+  return <thead className="bg-blue-100 text-blue-700">{children}</thead>;
 };
 
 export const Tbody = ({ children }) => {
-  return <tbody>{children}</tbody>;
+  return (
+    <tbody className="bg-white divide-y divide-gray-200">{children}</tbody>
+  );
+};
+
+export const TrHead = ({ children }) => {
+  return <tr className="bg-blue-100 text-blue-700">{children}</tr>;
 };
 
 export const Tr = ({ children }) => {
-  return <tr>{children}</tr>;
+  return (
+    <tr className="transition-all duration-300 ease-in-out hover:bg-gray-100">
+      {children}
+    </tr>
+  );
 };
 
 export const Th = ({ children }) => {
-  return <th>{children}</th>;
+  return (
+    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+      {children}
+    </th>
+  );
 };
 
 export const Td = ({ children }) => {
-  return <td>{children}</td>;
+  return (
+    <td className=" px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
+      {children}
+    </td>
+  );
 };
