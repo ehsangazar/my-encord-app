@@ -1,5 +1,7 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "~/components/Button/Button";
+import Modal from "~/components/Modal/Modal";
 import {
   Table,
   TableContainer,
@@ -10,10 +12,38 @@ import {
   Tr,
   TrHead,
 } from "~/components/Table/Table";
+import { selectPrediction } from "~/reducers/predictiontReducer";
 import { RootState } from "~/reducers/store";
 
 const PredictionTableSection = () => {
-  const prediction = useSelector((state: RootState) => state.prediction.items);
+  const dispatch = useDispatch();
+  const predictions = useSelector((state: RootState) => state.prediction.items);
+  const medias = useSelector((state: RootState) => state.media.items);
+  const selectedPredictionId = useSelector(
+    (state: RootState) => state.prediction.selectedItemId
+  );
+
+  const selectedPrediction = predictions.find(
+    (item) => item.predctionId === selectedPredictionId
+  );
+
+  const selectedMedia = medias.find(
+    (item) => item.id === selectedPrediction?.mediaId
+  );
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const onClickView = (predctionId: number) => {
+    setOpenModal(true);
+    dispatch(selectPrediction(predctionId));
+  };
+
+  console.log("debug selectedPrediction", selectedPrediction);
+  console.log("debug selectedMedia", selectedMedia);
+
+  if (!predictions.length) {
+    return <div>No Predictions Found</div>;
+  }
 
   return (
     <>
@@ -29,20 +59,37 @@ const PredictionTableSection = () => {
             </TrHead>
           </Thead>
           <Tbody>
-            {prediction.map((item) => (
-              <Tr key={item.media.id}>
-                <Td>{item.media.id}</Td>
-                <Td>{item.media.title}</Td>
-                <Td>{item.media.description}</Td>
-                <Td>{new Date(item.media.timestamp).toLocaleString()}</Td>
+            {predictions.map((item) => (
+              <Tr key={item.predctionId}>
+                <Td>{item.predctionId}</Td>
+                <Td>{item.modal.title}</Td>
+                <Td>{item.modal.description}</Td>
+                <Td>{new Date(item.modal.timestamp).toLocaleString()}</Td>
                 <Td>
-                  <Button>VIEW</Button>
+                  <Button onClick={() => onClickView(item.predctionId)}>
+                    VIEW
+                  </Button>
                 </Td>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
+      <Modal
+        title={`VIEW`}
+        description={`View the prediction`}
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      >
+        {selectedPrediction && (
+          <div>
+            <img
+              src={selectedMedia?.url}
+              alt={selectedPrediction.media?.filename}
+            />
+          </div>
+        )}
+      </Modal>
     </>
   );
 };

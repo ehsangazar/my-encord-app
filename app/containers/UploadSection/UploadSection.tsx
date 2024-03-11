@@ -13,6 +13,7 @@ const UploadSection = () => {
         dispatch(
           addMedia({
             filename: file.name,
+            url: URL.createObjectURL(file),
             size: file.size,
             createdAt: new Date().toISOString(),
           })

@@ -65,6 +65,14 @@ const UploadFile: React.FC<UploadFileProps> = ({
           <div>
             <p>Filename: {file.name}</p>
             <p>Size: {file.size} bytes</p>
+            <p>
+              Last Modified: {new Date(file.lastModified).toLocaleDateString()}
+            </p>
+            <img
+              src={URL.createObjectURL(file)}
+              alt={file.name}
+              className="py-2"
+            />
           </div>
           {!loading && (
             <div className="mt-2">

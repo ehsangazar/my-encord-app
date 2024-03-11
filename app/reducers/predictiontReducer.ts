@@ -3,14 +3,19 @@ import fetchHandler from "~/utils/fetchHandler";
 
 export const fetchPredict = createAsyncThunk(
   "prediction/fetchPredict",
-  async (data: { mediaId: number; model: string; threshold: number }) => {
+  async (data: { mediaId: number; title: string; description: string }) => {
     const response = await fetchHandler("/predict", {
       method: "POST",
       body: JSON.stringify(data),
     });
     return {
-      response: response,
-      media: data,
+      mediaId: data.mediaId,
+      response: response?.predict,
+      modal: {
+        timestamp: new Date().toISOString(),
+        title: data.title,
+        description: data.description,
+      },
     };
   }
 );
@@ -21,8 +26,13 @@ const predictionSlice = createSlice({
     loading: false,
     error: null,
     items: [],
+    selectedItemId: null,
   },
-  reducers: {},
+  reducers: {
+    selectPrediction: (state, action) => {
+      state.selectedItemId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPredict.pending, (state) => {
       state.error = null;
@@ -39,15 +49,15 @@ const predictionSlice = createSlice({
         return;
       }
       state.items.push({
-        media: {
-          id: state.items.length + 1,
-          timestamp: new Date().toISOString(),
-          ...action.payload.media,
-        },
-        response: action.payload.response.predict,
+        predctionId: state.items.length + 1,
+        mediaId: action.payload.mediaId,
+        modal: action.payload.modal,
+        response: action.payload.response,
       });
     });
   },
 });
+
+export const { selectPrediction } = predictionSlice.actions;
 
 export default predictionSlice.reducer;

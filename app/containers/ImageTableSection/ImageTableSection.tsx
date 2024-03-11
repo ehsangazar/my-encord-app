@@ -44,6 +44,10 @@ const ImageTableSection = () => {
       });
   };
 
+  if (!media.length) {
+    return <div>No Media Found</div>;
+  }
+
   return (
     <>
       <TableContainer>
