@@ -16,7 +16,7 @@ const mediaSlice = createSlice({
   reducers: {
     addMedia: (state, action) => {
       state.items.push({
-        id: (state.items.length + 1).toString(),
+        id: state.items.length + 1,
         ...action.payload,
       });
     },

@@ -39,8 +39,12 @@ const predictionSlice = createSlice({
         return;
       }
       state.items.push({
-        media: action.payload.media,
-        response: action.payload.response,
+        media: {
+          id: state.items.length + 1,
+          timestamp: new Date().toISOString(),
+          ...action.payload.media,
+        },
+        response: action.payload.response.predict,
       });
     });
   },

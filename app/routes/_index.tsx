@@ -41,8 +41,7 @@ export default function Index() {
             <ImageTableSection />
           </TabPanel>
           <TabPanel>
-            sadas
-            {/* <PredictionTableSection /> */}
+            <PredictionTableSection />
           </TabPanel>
         </TabPanels>
       </Tabs>

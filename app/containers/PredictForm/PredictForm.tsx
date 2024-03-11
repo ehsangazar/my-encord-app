@@ -4,9 +4,9 @@ import FormGroup from "~/components/FormGroup/FormGroup";
 import Input from "~/components/Input/Input";
 import TextArea from "~/components/TextArea/TextArea";
 import * as yup from "yup";
-import { useState } from "react";
 import Spinner from "~/components/Spinner/Spinner";
 import { useSelector } from "react-redux";
+import { RootState } from "~/reducers/store";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -20,7 +20,7 @@ interface PredictFormProps {
 const PredictForm: React.FC<PredictFormProps> = ({
   handlePredict,
 }: PredictFormProps) => {
-  const [loading, error] = useSelector((state) => [
+  const [loading, error] = useSelector((state: RootState) => [
     state.prediction.loading,
     state.prediction.error,
   ]);

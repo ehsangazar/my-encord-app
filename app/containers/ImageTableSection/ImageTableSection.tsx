@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "~/components/Button/Button";
 import Modal from "~/components/Modal/Modal";
@@ -15,12 +15,14 @@ import {
 import PredictForm from "../PredictForm/PredictForm";
 import { fetchPredict } from "~/reducers/predictiontReducer";
 import { selectMedia } from "~/reducers/mediaReducer";
-import { AppDispatch } from "~/reducers/store";
+import { AppDispatch, RootState } from "~/reducers/store";
 
 const ImageTableSection = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const media = useSelector((state) => state.media.items);
-  const selectedMediaId = useSelector((state) => state.media.selectedItemId);
+  const media = useSelector((state: RootState) => state.media.items);
+  const selectedMediaId = useSelector(
+    (state: RootState) => state.media.selectedItemId
+  );
   const selectedMedia = media.find((item) => item.id === selectedMediaId);
   const [openModal, setOpenModal] = useState(false);
 
