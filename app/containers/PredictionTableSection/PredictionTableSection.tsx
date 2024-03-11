@@ -17,30 +17,9 @@ import { fetchPredict } from "~/reducers/predictiontReducer";
 import { selectMedia } from "~/reducers/mediaReducer";
 import { AppDispatch } from "~/reducers/store";
 
-const ImageTableSection = () => {
+const PredictionTableSection = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const media = useSelector((state) => state.media.items);
-  const selectedMediaId = useSelector((state) => state.media.selectedItemId);
-  const selectedMedia = media.find((item) => item.id === selectedMediaId);
-  const [openModal, setOpenModal] = useState(false);
-
-  const onClickPredict = (itemId) => {
-    setOpenModal(true);
-    dispatch(selectMedia(itemId));
-  };
-
-  const handlePredict = (values) => {
-    dispatch(
-      fetchPredict({
-        ...values,
-        mediaId: selectedMediaId,
-      })
-    )
-      .unwrap()
-      .then(() => {
-        setOpenModal(false);
-      });
-  };
+  const prediction = useSelector((state) => state.prediction.items);
 
   return (
     <>
@@ -88,4 +67,4 @@ const ImageTableSection = () => {
   );
 };
 
-export default ImageTableSection;
+export default PredictionTableSection;

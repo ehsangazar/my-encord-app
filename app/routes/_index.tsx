@@ -12,6 +12,7 @@ import { useState } from "react";
 
 import UploadSection from "~/containers/UploadSection/UploadSection";
 import ImageTableSection from "~/containers/ImageTableSection/ImageTableSection";
+import PredictionTableSection from "~/containers/PredictionTableSection/PredictionTableSection";
 
 export const meta: MetaFunction = () => {
   return [
@@ -40,7 +41,8 @@ export default function Index() {
             <ImageTableSection />
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            sadas
+            {/* <PredictionTableSection /> */}
           </TabPanel>
         </TabPanels>
       </Tabs>

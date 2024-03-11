@@ -5,12 +5,13 @@ const mediaSlice = createSlice({
   initialState: {
     items: [
       {
-        id: "1",
+        id: 1,
         filename: "test.jpg",
         size: 123456,
         createdAt: new Date().toISOString(),
       },
     ],
+    selectedItemId: null,
   },
   reducers: {
     addMedia: (state, action) => {
@@ -19,9 +20,12 @@ const mediaSlice = createSlice({
         ...action.payload,
       });
     },
+    selectMedia: (state, action) => {
+      state.selectedItemId = action.payload;
+    },
   },
 });
 
-export const { addMedia } = mediaSlice.actions;
+export const { addMedia, selectMedia } = mediaSlice.actions;
 
 export default mediaSlice.reducer;

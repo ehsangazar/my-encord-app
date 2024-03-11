@@ -4,6 +4,9 @@ import FormGroup from "~/components/FormGroup/FormGroup";
 import Input from "~/components/Input/Input";
 import TextArea from "~/components/TextArea/TextArea";
 import * as yup from "yup";
+import { useState } from "react";
+import Spinner from "~/components/Spinner/Spinner";
+import { useSelector } from "react-redux";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -17,6 +20,11 @@ interface PredictFormProps {
 const PredictForm: React.FC<PredictFormProps> = ({
   handlePredict,
 }: PredictFormProps) => {
+  const [loading, error] = useSelector((state) => [
+    state.prediction.loading,
+    state.prediction.error,
+  ]);
+
   return (
     <Formik
       initialValues={{
@@ -24,8 +32,8 @@ const PredictForm: React.FC<PredictFormProps> = ({
         description: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        handlePredict && handlePredict(values);
+      onSubmit={async (values, { setSubmitting }) => {
+        handlePredict(values);
         setSubmitting(false);
       }}
     >
@@ -37,10 +45,14 @@ const PredictForm: React.FC<PredictFormProps> = ({
           <FormGroup>
             <TextArea name="description" placeholder="Description" />
           </FormGroup>
+          {error && <div className="text-red-500">{error}</div>}
           <FormGroup>
-            <Button type="submit" disabled={isSubmitting || !isValid}>
-              Submit
-            </Button>
+            {!loading && (
+              <Button type="submit" disabled={isSubmitting || !isValid}>
+                Submit
+              </Button>
+            )}
+            {loading && <Spinner />}
           </FormGroup>
         </Form>
       )}
