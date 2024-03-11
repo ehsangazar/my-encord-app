@@ -19,6 +19,8 @@ import {
   Tr,
 } from "~/components/Table/Table";
 import UploadFile from "~/components/UploadFile/UploadFile";
+import { addMedia } from "~/reducers/mediaReducer";
+import { useDispatch } from "react-redux";
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,14 +33,21 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  const handleUpload = () => {
-    return new Promise((resolve, reject) => {
-      // Sample Mocking API Upload Time
+  const handleUpload = (file) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
-        // resolve("File Uploaded Successfully!");
-        reject("File Upload Failed!");
+        dispatch(
+          addMedia({
+            id: Math.random().toString(36).substr(2, 9),
+            filename: file.name,
+            size: file.size,
+            createdAt: new Date().toISOString(),
+          })
+        );
+        resolve("File Uploaded Successfully!");
       }, 2000);
     });
   };
