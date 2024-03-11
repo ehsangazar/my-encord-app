@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "~/components/Button/Button";
+import ImagePredicted from "~/components/ImagePredicted/ImagePredicted";
 import Modal from "~/components/Modal/Modal";
 import {
   Table,
@@ -83,9 +84,9 @@ const PredictionTableSection = () => {
       >
         {selectedPrediction && (
           <div>
-            <img
-              src={selectedMedia?.url}
-              alt={selectedPrediction.media?.filename}
+            <ImagePredicted
+              image={selectedMedia}
+              predictions={selectedPrediction?.response?.predictions || []}
             />
           </div>
         )}
