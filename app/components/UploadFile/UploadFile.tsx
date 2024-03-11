@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AiOutlineUpload } from "react-icons/ai";
 import Button from "../Button/Button";
+import Spinner from "../Spinner/Spinner";
 
 interface UploadFileProps {
   handleUpload: (file: File) => Promise<void>;
 }
 
 const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
@@ -15,11 +18,16 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
   };
 
   const handleUploadLocal = async () => {
+    if (!file) return;
+    setLoading(true);
     try {
       await handleUpload(file);
     } catch (error) {
       console.error(error);
     }
+    // reset file input value
+    inputRef.current.value = "";
+    setLoading(false);
     setFile(null);
   };
 
@@ -36,6 +44,7 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
           <span>Upload File</span>
         </label>
         <input
+          ref={inputRef}
           className="hidden"
           id="file"
           type="file"
@@ -49,9 +58,13 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
             <p>Filename: {file.name}</p>
             <p>Size: {file.size} bytes</p>
           </div>
-          <div className="mt-2">
-            <Button onClick={handleUploadLocal}>Upload</Button>
-          </div>
+          {!loading && (
+            <div className="mt-2">
+              <Button onClick={handleUploadLocal}>Upload</Button>
+            </div>
+          )}
+          {/* loading spinner */}
+          {loading && <Spinner />}
         </div>
       )}
     </div>
