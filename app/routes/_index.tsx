@@ -18,9 +18,7 @@ import {
   Thead,
   Tr,
 } from "~/components/Table/Table";
-import UploadFile from "~/components/UploadFile/UploadFile";
-import { addMedia } from "~/reducers/mediaReducer";
-import { useDispatch } from "react-redux";
+import UploadSection from "~/containers/UploadSection/UploadSection";
 
 export const meta: MetaFunction = () => {
   return [
@@ -33,24 +31,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState<number>(0);
-
-  const handleUpload = (file) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch(
-          addMedia({
-            id: Math.random().toString(36).substr(2, 9),
-            filename: file.name,
-            size: file.size,
-            createdAt: new Date().toISOString(),
-          })
-        );
-        resolve("File Uploaded Successfully!");
-      }, 2000);
-    });
-  };
 
   return (
     <Layout>
@@ -62,9 +43,7 @@ export default function Index() {
 
         <TabPanels>
           <TabPanel>
-            <div>
-              <UploadFile handleUpload={handleUpload} />
-            </div>
+            <UploadSection />
             <TableContainer>
               <Table>
                 <Thead>

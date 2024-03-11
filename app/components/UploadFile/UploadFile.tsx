@@ -12,6 +12,7 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
@@ -24,6 +25,7 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
     setError(null);
     try {
       await handleUpload(file);
+      setSuccess("File Uploaded Successfully!");
     } catch (error) {
       setError("File Upload Failed! Please try again.");
     }
@@ -55,6 +57,7 @@ const UploadFile: React.FC = ({ handleUpload }: UploadFileProps) => {
         />
       </div>
       {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+      {success && <p className="text-green-500 text-sm mt-2">{success}</p>}
       {file && (
         <div>
           <div>
