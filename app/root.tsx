@@ -5,14 +5,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import stylesheet from "~/tailwind.css";
-import { LinksFunction } from "@remix-run/node";
 import { Provider } from "react-redux";
 import { store } from "~/reducers/store";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-];
+import "./tailwind.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
