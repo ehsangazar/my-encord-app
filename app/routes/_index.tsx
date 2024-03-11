@@ -9,6 +9,15 @@ import {
 } from "~/components/Tabs/Tabs";
 import { AiFillFile, AiFillProject } from "react-icons/ai";
 import { useState } from "react";
+import {
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "~/components/Table/Table";
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,13 +36,30 @@ export default function Index() {
     <Layout>
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
         <TabList>
-          <Tab icon={<AiFillFile />}>One</Tab>
-          <Tab icon={<AiFillProject />}>Two</Tab>
+          <Tab icon={<AiFillFile />}>Images</Tab>
+          <Tab icon={<AiFillProject />}>Predictions</Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel>
-            <p>one!</p>
+            <TableContainer>
+              <Table>
+                <Thead>
+                  <Tr>
+                    <Th>Image</Th>
+                    <Th>Image</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td>Image 1</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Image 1</Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </TableContainer>
           </TabPanel>
           <TabPanel>
             <p>two!</p>

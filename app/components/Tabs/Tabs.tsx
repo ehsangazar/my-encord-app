@@ -1,50 +1,50 @@
+import getArray from "~/utils/getArrayOfChildren";
+
 export const Tabs = ({ children, activeTab, setActiveTab }) => {
   return (
     <div className="">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center border-gray-700 border-b-2">
-        {Array.isArray(children) &&
-          children.map((childNode, childIndex) => {
-            if (childNode?.type?.name === "TabList") {
-              return (
-                <TabList key={`tablist-${childIndex}`}>
-                  {childNode.props.children.map((tabNode, tabIndex) => {
-                    return (
-                      <Tab
-                        key={`tab-${tabIndex}`}
-                        icon={tabNode.props.icon}
-                        active={activeTab === tabIndex}
-                        onClick={() => setActiveTab(tabIndex)}
-                      >
-                        {tabNode.props.children}
-                      </Tab>
-                    );
-                  })}
-                </TabList>
-              );
-            }
-          })}
+        {getArray(children).map((childNode, childIndex) => {
+          if (childNode?.type?.name === "TabList") {
+            return (
+              <TabList key={`tablist-${childIndex}`}>
+                {getArray(childNode.props.children).map((tabNode, tabIndex) => {
+                  return (
+                    <Tab
+                      key={`tab-${tabIndex}`}
+                      icon={tabNode.props.icon}
+                      active={activeTab === tabIndex}
+                      onClick={() => setActiveTab(tabIndex)}
+                    >
+                      {tabNode.props.children}
+                    </Tab>
+                  );
+                })}
+              </TabList>
+            );
+          }
+        })}
       </ul>
       <div>
-        {Array.isArray(children) &&
-          children.map((childNode, childIndex) => {
-            if (childNode?.type?.name === "TabPanels") {
-              return (
-                <TabPanels key={`tabpanels-${childIndex}`}>
-                  {childNode.props.children.map(
-                    (tabPanelNode, tabPanelIndex) => {
-                      if (activeTab === tabPanelIndex) {
-                        return (
-                          <TabPanel key={`tabpanel-${tabPanelIndex}`}>
-                            {tabPanelNode.props.children}
-                          </TabPanel>
-                        );
-                      }
+        {getArray(children).map((childNode, childIndex) => {
+          if (childNode?.type?.name === "TabPanels") {
+            return (
+              <TabPanels key={`tabpanels-${childIndex}`}>
+                {getArray(childNode.props.children).map(
+                  (tabPanelNode, tabPanelIndex) => {
+                    if (activeTab === tabPanelIndex) {
+                      return (
+                        <TabPanel key={`tabpanel-${tabPanelIndex}`}>
+                          {tabPanelNode.props.children}
+                        </TabPanel>
+                      );
                     }
-                  )}
-                </TabPanels>
-              );
-            }
-          })}
+                  }
+                )}
+              </TabPanels>
+            );
+          }
+        })}
       </div>
     </div>
   );
