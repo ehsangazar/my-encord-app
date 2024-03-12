@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component should render correctly 1`] = `
+<div
+  className="flex flex-col w-full mb-4"
+>
+  <input
+    className="border border-gray-300 rounded p-2 w-full"
+    name="name"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Name"
+    type="text"
+    value=""
+  />
+</div>
+`;

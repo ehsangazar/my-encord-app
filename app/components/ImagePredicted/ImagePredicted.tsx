@@ -8,6 +8,10 @@ const ImagePredicted = ({ image, predictions }) => {
   });
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const handleResize = () => {
       setImageDimensions({
         width: imageRef.current?.clientWidth,
@@ -16,13 +20,13 @@ const ImagePredicted = ({ image, predictions }) => {
     };
 
     window.addEventListener("resize", handleResize);
-
     if (imageRef.current?.complete) {
       handleResize();
     } else {
       imageRef.current?.addEventListener("load", handleResize);
     }
 
+    handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
     };

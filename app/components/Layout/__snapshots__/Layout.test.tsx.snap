@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout component should render correctly 1`] = `
+<div
+  className="flex h-screen bg-gray-50"
+>
+  <div
+    className="flex-1 h-full overflow-y-auto"
+  >
+    <header
+      className="flex items-center justify-between p-4 bg-gray-800 border-b"
+    >
+      <div
+        className="max-w-4xl mx-auto w-full flex items-center justify-between"
+      >
+        <div
+          className="flex items-center"
+        >
+          <h2
+            className="text-xl font-semibold text-gray-800 dark:text-white"
+          >
+            My Encord App
+          </h2>
+        </div>
+      </div>
+    </header>
+    <main
+      className="h-full p-4 max-w-4xl mx-auto"
+    >
+      Click me
+    </main>
+  </div>
+</div>
+`;

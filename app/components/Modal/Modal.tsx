@@ -26,6 +26,7 @@ const Modal = ({ title, children, open, onClose, description }: ModalProps) => {
   };
 
   useEffect(() => {
+    if (!document) return;
     document.addEventListener("mousedown", clickOutsideModal);
     document.addEventListener("keydown", pressEscape);
     return () => {

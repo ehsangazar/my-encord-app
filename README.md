@@ -4,6 +4,8 @@ This is a repository for my encord app, a project to predict image objects
 
 ## Development
 
+Make sure you have pnpm install (https://pnpm.io/installation)
+
 Run these commands to start development
 
 ```
@@ -19,6 +21,15 @@ In order to deploy this repo in production, run these commands
 pnpm install
 pnpm run build
 pnpm run start
+```
+
+## Test
+
+You can run the tests by this command
+
+```
+pnpm run test:watch
+pnpm run test
 ```
 
 ## API Reference

@@ -1,5 +1,10 @@
 const fetchHandler = async (url: string, options: RequestInit = {}) => {
-  const newUrl = `${window.location.origin}/api${url}`;
+  let newUrl = url;
+  if (typeof window === "undefined") {
+    return;
+  } else {
+    newUrl = `${window.location.origin}/api${url}`;
+  }
 
   const response = await fetch(newUrl, {
     ...options,

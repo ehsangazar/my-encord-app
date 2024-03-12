@@ -26,7 +26,7 @@ module.exports = {
   overrides: [
     // React
     {
-      files: ["**/*.{js,jsx,ts,tsx}"],
+      files: ["**/*.{js,jsx,ts,tsx}", "tests/**/*"],
       plugins: ["react", "jsx-a11y"],
       extends: [
         "plugin:react/recommended",
@@ -77,6 +77,15 @@ module.exports = {
       files: [".eslintrc.cjs", "server.js"],
       env: {
         node: true,
+      },
+    },
+
+    // Jest
+    {
+      files: ["**/*.test.{js,jsx,ts,tsx}"],
+      plugins: ["jest"],
+      env: {
+        "jest/globals": true,
       },
     },
   ],

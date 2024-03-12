@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImagePredicted component should render correctly 1`] = `
+<div
+  className="relative overflow-hidden"
+>
+  <img
+    alt="image.jpg"
+    className="w-full h-auto relative max-w-screen-md max-h-full object-cover"
+    src="https://example.com/image.jpg"
+  />
+  <div
+    className="absolute"
+    style={
+      {
+        "backgroundColor": "rgba(75,0,130, NaN)",
+        "border": "2px solid rgb(75,0,130)",
+        "height": NaN,
+        "left": NaN,
+        "top": NaN,
+        "width": NaN,
+      }
+    }
+  >
+    <div
+      className="absolute bg-purple-600 text-white text-xs rounded px-1 bottom-0 right-0"
+    >
+      label
+       (
+      90
+      %)
+    </div>
+  </div>
+</div>
+`;
