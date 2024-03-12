@@ -47,7 +47,7 @@ Takes two numbers and returns the sum.
 
 ## Feedback
 
-If you have any feedback, please reach out to us at me@ehsangazar.com
+If you have any feedback, please reach out to us at me@gazar.dev
 
 ## License
 
