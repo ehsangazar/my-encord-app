@@ -41,10 +41,6 @@ pnpm run start
 | `title`       | `string` | **Required**. title from Modal       |
 | `description` | `string` | **Required**. description from Modal |
 
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
 ## Feedback
 
 If you have any feedback, please reach out to us at me@gazar.dev
