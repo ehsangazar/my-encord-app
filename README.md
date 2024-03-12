@@ -1,34 +1,58 @@
-# Welcome to Remix + Vite!
+# My Encord App
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+This is a repository for my encord app, a project to predict image objects
 
 ## Development
 
-Run the Express server with Vite dev middleware:
+Run these commands to start development
 
-```shellscript
-npm run dev
+```
+pnpm install
+pnpm run dev
 ```
 
 ## Deployment
 
-First, build your app for production:
+In order to deploy this repo in production, run these commands
 
-```sh
-npm run build
+```
+pnpm install
+pnpm run build
+pnpm run start
 ```
 
-Then run the app in production mode:
+## API Reference
 
-```sh
-npm start
+#### Get General
+
+```http
+  GET /api
 ```
 
-Now you'll need to pick a host to deploy it to.
+#### Post Predict
 
-### DIY
+```http
+  POST /api/predict
+```
 
-If you're familiar with deploying Express applications you should be right at home. Just make sure to deploy the output of `npm run build`
+| Body          | Type     | Description                          |
+| :------------ | :------- | :----------------------------------- |
+| `mediaId`     | `string` | **Required**. media Id               |
+| `title`       | `string` | **Required**. title from Modal       |
+| `description` | `string` | **Required**. description from Modal |
 
-- `build/server`
-- `build/client`
+#### add(num1, num2)
+
+Takes two numbers and returns the sum.
+
+## Feedback
+
+If you have any feedback, please reach out to us at me@ehsangazar.com
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Author
+
+- [@ehsangazar](https://www.github.com/ehsangazar)

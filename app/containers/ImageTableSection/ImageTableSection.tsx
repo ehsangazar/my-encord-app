@@ -17,7 +17,7 @@ import { fetchPredict } from "~/reducers/predictiontReducer";
 import { selectMedia } from "~/reducers/mediaReducer";
 import { AppDispatch, RootState } from "~/reducers/store";
 
-const ImageTableSection = () => {
+const ImageTableSection: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const media = useSelector((state: RootState) => state.media.items);
   const selectedMediaId = useSelector(
