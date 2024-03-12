@@ -16,6 +16,13 @@ const ImagePredicted = ({ image, predictions }) => {
     };
 
     window.addEventListener("resize", handleResize);
+
+    if (imageRef.current?.complete) {
+      handleResize();
+    } else {
+      imageRef.current?.addEventListener("load", handleResize);
+    }
+
     handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);

@@ -5,7 +5,7 @@ export const Tabs = ({ children, activeTab, setActiveTab }) => {
     <div className="">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center border-gray-700 border-b-2">
         {getArray(children).map((childNode, childIndex) => {
-          if (childNode?.type?.name === "TabList") {
+          if (childNode?.type?.displayName === "TabList") {
             return (
               <TabList key={`tablist-${childIndex}`}>
                 {getArray(childNode.props.children).map((tabNode, tabIndex) => {
@@ -27,7 +27,7 @@ export const Tabs = ({ children, activeTab, setActiveTab }) => {
       </ul>
       <div>
         {getArray(children).map((childNode, childIndex) => {
-          if (childNode?.type?.name === "TabPanels") {
+          if (childNode?.type?.displayName === "TabPanels") {
             return (
               <TabPanels key={`tabpanels-${childIndex}`}>
                 {getArray(childNode.props.children).map(
@@ -49,10 +49,12 @@ export const Tabs = ({ children, activeTab, setActiveTab }) => {
     </div>
   );
 };
+Tabs.displayName = "Tabs";
 
 export const TabList = ({ children }) => {
   return <>{children}</>;
 };
+TabList.displayName = "TabList";
 
 interface TabProps {
   children: React.ReactNode;
@@ -78,11 +80,14 @@ export const Tab = ({ children, icon, active, onClick }: TabProps) => {
     </li>
   );
 };
+Tab.displayName = "Tab";
 
 export const TabPanels = ({ children }) => {
   return <div>{children}</div>;
 };
+TabPanels.displayName = "TabPanels";
 
 export const TabPanel = ({ children }) => {
   return <div className="p-0 sm:p-4">{children}</div>;
 };
+TabPanel.displayName = "TabPanel";
